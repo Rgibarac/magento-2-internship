@@ -24,6 +24,5 @@ class Hello extends \Magento\Framework\App\Action\Action
         $customerID = $this->customerSession->getCustomerId();
         $result->setContents( "Hello customer with the id of $customerID.");
         return $result;
-
     }
 }
