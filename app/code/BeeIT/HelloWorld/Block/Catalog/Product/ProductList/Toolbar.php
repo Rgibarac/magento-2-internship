@@ -24,7 +24,7 @@ class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar
         if ($this->_availableOrder === null) {
             $this->_availableOrder = $this->_catalogConfig->getAttributeUsedForSortByArray();
         }
-        $this->_availableOrder['bestsellers'] = 'Best Sellers';
+        $this->_availableOrder['bestsellers'] = 'Best SellersSS';
         return $this;
     }
 }

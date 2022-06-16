@@ -18,6 +18,7 @@ class Hello extends \Magento\Framework\App\Action\Action
         parent::__construct($context);
     }
 
+
     public function execute()
     {
         $result = $this->resultFactory->create(ResultFactory::TYPE_RAW);
