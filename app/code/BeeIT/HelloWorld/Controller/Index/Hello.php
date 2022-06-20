@@ -1,19 +1,21 @@
 <?php
 namespace BeeIT\HelloWorld\Controller\Index;
 
-use Magento\Framework\App\Action\Context;
+use BeeIT\HelloWorld\Controller\Index\Hello\Interceptor;
+use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Customer\Model\Session;
 
-class Hello extends \Magento\Framework\App\Action\Action
+class Hello implements HttpGetActionInterface
 {
-    protected $customerSession;
+    protected Session $customerSession;
+    protected ResultFactory $resultFactory;
 
-    public function __construct(Context $context, Session $customerSession)
+    public function __construct(Session $customerSession, ResultFactory $resultFactory)
     {
         $this->customerSession = $customerSession;
-        parent::__construct($context);
+        $this->resultFactory = $resultFactory;
     }
 
     public function execute()
@@ -22,10 +24,15 @@ class Hello extends \Magento\Framework\App\Action\Action
         $objectManager = ObjectManager::getInstance();
         $customerSession2 =$objectManager->get('Magento\Customer\Model\Session');
         $customerID2 = $customerSession2->getCustomerId();
-        echo "Hello customer with the id of $customerID2.";
-        echo "<br/>";
         $customerID = $this->customerSession->getCustomerId();
-        $result->setContents( "Hello customer with the id of $customerID.");
+        if (is_null($customerID))
+        {
+            $result->setContents( "You are not currently logged in." );
+        }
+        else
+        {
+            $result->setContents( "Hello customer with the id of $customerID. <br/> Hello customer with the id of $customerID2." );
+        }
         return $result;
     }
 }
