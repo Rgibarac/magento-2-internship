@@ -1,4 +1,5 @@
 <?php
+
 namespace BeeIT\HelloWorld\Controller\Index;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
@@ -16,11 +17,12 @@ class Hello implements HttpGetActionInterface
         $this->customerSession = $customerSession;
         $this->resultFactory = $resultFactory;
     }
+
     public function execute()
     {
         $result = $this->resultFactory->create(ResultFactory::TYPE_RAW);
         $objectManager = ObjectManager::getInstance();
-        $customerSession2 =$objectManager->get('Magento\Customer\Model\Session');
+        $customerSession2 = $objectManager->get('Magento\Customer\Model\Session');
         $customerID2 = $customerSession2->getCustomerId();
         $customerID = $this->customerSession->getCustomerId();
         if ($customerID === null) {
