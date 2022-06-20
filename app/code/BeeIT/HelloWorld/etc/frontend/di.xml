@@ -4,4 +4,8 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Magento\Catalog\Block\Product\ProductList\Toolbar"
                 type="BeeIT\HelloWorld\Block\Catalog\Product\ProductList\Toolbar"/>
+    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
+        <plugin name="addBestSellersToToolbarAvailableOrders"
+                type="BeeIT\HelloWorld\Plugin\AddBestSellersToToolbarAvailableOrders"/>
+    </type>
 </config>
