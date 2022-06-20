@@ -1,7 +1,6 @@
 <?php
 namespace BeeIT\HelloWorld\Controller\Index;
 
-use BeeIT\HelloWorld\Controller\Index\Hello\Interceptor;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Controller\ResultFactory;
