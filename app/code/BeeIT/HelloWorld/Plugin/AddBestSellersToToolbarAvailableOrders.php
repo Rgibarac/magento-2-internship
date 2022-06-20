@@ -11,6 +11,5 @@ class AddBestSellersToToolbarAvailableOrders
         $result = $proceed();
         $result['best sellers - plugin'] = 'Best Sellers - Plugin';
         return $result;
-
     }
 }
