@@ -1,13 +1,33 @@
 <?php
 namespace BeeIT\HelloWorld\Controller\Index;
 
-use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\App\ObjectManager;
+use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\HTTP\PhpEnvironment\Request;
+use Magento\Customer\Model\Session;
 
-class Hello implements HttpGetActionInterface
+class Hello extends \Magento\Framework\App\Action\Action
 {
+    protected $_pageFactory;
+    protected $customerSession;
+
+    public function __construct(Context $context, Session $customerSession)
+    {
+        $this->customerSession = $customerSession;
+        parent::__construct($context);
+    }
 
     public function execute()
     {
-        echo "Hello World";
+        $result = $this->resultFactory->create(ResultFactory::TYPE_RAW);
+        $objectManager = ObjectManager::getInstance();
+        $customerSession2 =$objectManager->get('Magento\Customer\Model\Session');
+        $customerID2 = $customerSession2->getCustomerId();
+        echo "Hello customer with the id of $customerID2.";
+        echo "<br/>";
+        $customerID = $this->customerSession->getCustomerId();
+        $result->setContents( "Hello customer with the id of $customerID.");
+        return $result;
     }
 }
