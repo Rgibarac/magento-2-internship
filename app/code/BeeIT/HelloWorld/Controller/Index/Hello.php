@@ -26,7 +26,8 @@ class Hello implements HttpGetActionInterface
         if ($customerID === null) {
             $result->setContents("You are not currently logged in.");
         } else {
-            $result->setContents("Hello customer with the id of $customerID. <br/> Hello customer with the id of $customerID2.");}
+            $result->setContents("Hello customer with the id of $customerID. <br/> Hello customer with the id of $customerID2.");
+        }
         return $result;
     }
 }
