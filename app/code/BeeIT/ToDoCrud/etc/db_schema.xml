@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="beeit_todocrud_todoitem" resource="default" engine="innodb" comment="BeeIT ToDoCrud ToDoItem">
+        <column xsi:type="int" name="id" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="text" name="description" comment="Description"/>
+        <column xsi:type="timestamp" name="date_completed" on_update="false" comment="Date Completed"/>
+        <column xsi:type="timestamp" name="creation_time" on_update="false" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="update_time" on_update="true" comment="Update Time"/>
+        <column xsi:type="boolean" name="completed" comment="Completed"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+
+    </table>
+</schema>
