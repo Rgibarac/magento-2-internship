@@ -16,7 +16,6 @@ class Hello implements HttpGetActionInterface
         $this->customerSession = $customerSession;
         $this->resultFactory = $resultFactory;
     }
-
     public function execute()
     {
         $result = $this->resultFactory->create(ResultFactory::TYPE_RAW);
@@ -24,14 +23,10 @@ class Hello implements HttpGetActionInterface
         $customerSession2 =$objectManager->get('Magento\Customer\Model\Session');
         $customerID2 = $customerSession2->getCustomerId();
         $customerID = $this->customerSession->getCustomerId();
-        if (is_null($customerID))
-        {
-            $result->setContents( "You are not currently logged in." );
-        }
-        else
-        {
-            $result->setContents( "Hello customer with the id of $customerID. <br/> Hello customer with the id of $customerID2." );
-        }
+        if ($customerID === null) {
+            $result->setContents("You are not currently logged in.");
+        } else {
+            $result->setContents("Hello customer with the id of $customerID. <br/> Hello customer with the id of $customerID2.");}
         return $result;
     }
 }
