@@ -3,23 +3,23 @@
 namespace BeeIT\ToDoCrud\Controller\Index;
 
 use Magento\Framework\App\Action\Context;
-use BeeIT\ToDoCrud\Model\ToDo\ToDoItemFactory as ToDoItemFactory;
+use BeeIT\ToDoCrud\Model\ToDo\ToDoItemFactory as toDoItemFactory;
 
 class Delete extends \Magento\Framework\App\Action\Action
 {
-    protected ToDoItemFactory $ToDoItemFactory;
+    protected toDoItemFactory $toDoItemFactory;
 
-    public function __construct(Context $context, ToDoItemFactory $ToDoItemFactory)
+    public function __construct(Context $context, toDoItemFactory $toDoItemFactory)
     {
-        $this->ToDoItemFactory = $ToDoItemFactory;
+        $this->toDoItemFactory = $toDoItemFactory;
         parent::__construct($context);
     }
 
     public function execute()
     {
-        $Delete = $this->ToDoItemFactory->create();
-        $result = $Delete->setId("27");
+        $model = $this->toDoItemFactory->create();
+        $result = $model->setId("44");
         $result->delete();
-        die();
+        return $this->_redirect('todocrud/index/showall');
     }
 }

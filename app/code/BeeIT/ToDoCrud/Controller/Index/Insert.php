@@ -2,16 +2,16 @@
 
 namespace BeeIT\ToDoCrud\Controller\Index;
 
-use BeeIT\ToDoCrud\Model\ToDo\ToDoItemFactory as ToDoFactory;
+use BeeIT\ToDoCrud\Model\ToDo\ToDoItemFactory as toDoFactory;
 use Magento\Framework\App\Action\Context;
 
 class Insert extends \Magento\Framework\App\Action\Action
 {
-    protected ToDoFactory $ToDoFactory;
+    protected toDoFactory $toDoFactory;
 
-    public function __construct(Context $context, ToDoFactory $ToDoFactory)
+    public function __construct(Context $context, toDoFactory $toDoFactory)
     {
-        $this->ToDoFactory = $ToDoFactory;
+        $this->toDoFactory = $toDoFactory;
         parent::__construct($context);
     }
 
@@ -20,9 +20,9 @@ class Insert extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
-        $model = $this->ToDoFactory->create();
-        $model->addData(["description" => "beeit1", "date_completed" => null, "creation_time" => time(), "update_time" => time(), "completed" => false]);
+        $model = $this->toDoFactory->create();
+        $model->addData(["description" => "beeit1", "creation_time" => time(), "update_time" => time(), "completed" => false]);
         $model->save();
-        die();
+        return $this->_redirect('todocrud/index/showall');
     }
 }

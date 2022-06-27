@@ -3,28 +3,27 @@
 namespace BeeIT\ToDoCrud\Controller\Index;
 
 use Magento\Framework\App\Action\Context;
-use BeeIT\ToDoCrud\Model\ToDo\ToDoItemFactory as ToDoItemFactory;
+use BeeIT\ToDoCrud\Model\ToDo\ToDoItemFactory as toDoItemFactory;
 
 class Edit extends \Magento\Framework\App\Action\Action
 {
-    protected ToDoItemFactory $ToDoItemFactory;
+    protected toDoItemFactory $toDoItemFactory;
 
-    public function __construct(Context $context, ToDoItemFactory $ToDoItemFactory)
+    public function __construct(Context $context, toDoItemFactory $toDoItemFactory)
     {
-        $this->ToDoItemFactory = $ToDoItemFactory;
+        $this->toDoItemFactory = $toDoItemFactory;
         parent::__construct($context);
     }
 
     public function execute()
     {
-        $Edit = $this->ToDoItemFactory->create();
-        $result = $Edit->load("36");
+        $model = $this->toDoItemFactory->create();
+        $result = $model->load("46");
         $resultData = $result->getData();
         $resultData["completed"]="1";
         $resultData["date_completed"]=strval(time());
         $result->addData($resultData);
-        $result->setId("36");
         $result->save();
-        die();
+        return $this->_redirect('todocrud/index/showall');
     }
 }
