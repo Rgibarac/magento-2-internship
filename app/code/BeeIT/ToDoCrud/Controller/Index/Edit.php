@@ -25,7 +25,6 @@ class Edit extends \Magento\Framework\App\Action\Action
         $result->addData($resultData);
         $result->setId("36");
         $result->save();
-        var_dump($resultData);
         die();
     }
 }
