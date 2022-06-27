@@ -17,11 +17,11 @@ class Edit extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {
-        $model = $this->toDoItemFactory->create();
-        $result = $model->load("46");
+        $todoItem = $this->toDoItemFactory->create();
+        $result = $todoItem->load("46");
         $resultData = $result->getData();
-        $resultData["completed"]="1";
-        $resultData["date_completed"]=strval(time());
+        $resultData["completed"] = "1";
+        $resultData["date_completed"] = strval(time());
         $result->addData($resultData);
         $result->save();
         return $this->_redirect('todocrud/index/showall');

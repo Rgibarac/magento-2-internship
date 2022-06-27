@@ -20,9 +20,9 @@ class Insert extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
-        $model = $this->toDoFactory->create();
-        $model->addData(["description" => "beeit1", "creation_time" => time(), "update_time" => time(), "completed" => false]);
-        $model->save();
+        $todo = $this->toDoFactory->create();
+        $todo->addData(["description" => "beeit1", "creation_time" => time(), "update_time" => time(), "completed" => false]);
+        $todo->save();
         return $this->_redirect('todocrud/index/showall');
     }
 }
