@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="crudShowAll" xsi:type="object">BeeIT\ToDoCrud\Console\ShowAll</item>
+                <item name="crudDelete" xsi:type="object">BeeIT\ToDoCrud\Console\Delete</item>
+                <item name="crudInsert" xsi:type="object">BeeIT\ToDoCrud\Console\Insert</item>
+                <item name="crudEdit" xsi:type="object">BeeIT\ToDoCrud\Console\Edit</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

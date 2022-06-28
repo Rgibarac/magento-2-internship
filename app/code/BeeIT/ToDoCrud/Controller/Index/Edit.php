@@ -18,9 +18,10 @@ class Edit extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         $todoItem = $this->toDoItemFactory->create();
-        $result = $todoItem->load("46");
+        $result = $todoItem->load("54");
         $resultData = $result->getData();
         $resultData["completed"] = "1";
+        $resultData["description"] = "awsd";
         $resultData["date_completed"] = strval(time());
         $result->addData($resultData);
         $result->save();
