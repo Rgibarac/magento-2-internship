@@ -4,16 +4,27 @@ namespace BeeIT\ToDoCrud\Console;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use BeeIT\ToDoCrud\Model\ToDo\ToDoItemFactory as ToDoFactory;
 
 class Insert extends Command
 {
     protected toDoFactory $toDoFactory;
+    const DESCRIPTION = 'description';
 
     protected function configure()
     {
+        $options = [
+			new InputOption(
+				self::DESCRIPTION,
+				null,
+				InputOption::VALUE_REQUIRED,
+				'Description'
+			)
+		];
         $this->setName('crud:insert');
-        $this->setDescription('Demo command line');
+        $this->setDescription('Inserts a new row into beeit_todocrud_todoitem table with entered description.');
+        $this->setDefinition($options);
 
         parent::configure();
     }
@@ -26,8 +37,12 @@ class Insert extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $todo = $this->toDoFactory->create();
-        $todo->addData(["description" => "beeit1", "creation_time" => time(), "update_time" => time(), "completed" => false]);
-        $todo->save();
+        if ($description = $input->getOption(self::DESCRIPTION)) {
+            $todo = $this->toDoFactory->create();
+            $todo->addData(["description" => $description, "creation_time" => time(), "update_time" => time(), "completed" => false]);
+            $todo->save();
+        } else {
+            $output->writeln("Please enter a description.");
+        }
     }
 }

@@ -14,6 +14,7 @@ class ShowAll extends Command
     protected function configure()
     {
         $this->setName('crud:showAll');
+        $this->setDescription('Shows all values from beeit_todocrud_todoitem table.');
 
         parent::configure();
     }

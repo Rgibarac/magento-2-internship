@@ -4,16 +4,27 @@ namespace BeeIT\ToDoCrud\Console;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use BeeIT\ToDoCrud\Model\ToDo\ToDoItemFactory as toDoItemFactory;
 
 class Delete extends Command
 {
     protected toDoItemFactory $toDoItemFactory;
+    const ID = 'id';
 
     protected function configure()
     {
+        $options = [
+			new InputOption(
+				self::ID,
+				null,
+				InputOption::VALUE_REQUIRED,
+				'Id'
+			)
+		];
         $this->setName('crud:delete');
-        $this->setDescription('Demo command line');
+        $this->setDescription('Deletes a row with the selected id.');
+        $this->setDefinition($options);
 
         parent::configure();
     }
@@ -26,8 +37,12 @@ class Delete extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $todoItem = $this->toDoItemFactory->create();
-        $result = $todoItem->setId("48");
-        $result->delete();
+        if ($id = $input->getOption(self::ID)) {
+            $todoItem = $this->toDoItemFactory->create();
+            $result = $todoItem->setId($id);
+            $result->delete();
+        } else {
+            $output->writeln("Please enter an id.");
+        }
     }
 }
