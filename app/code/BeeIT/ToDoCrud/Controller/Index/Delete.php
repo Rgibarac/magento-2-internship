@@ -18,7 +18,7 @@ class Delete extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         $todoItem = $this->toDoItemFactory->create();
-        $result = $todoItem->setId("44");
+        $result = $todoItem->setId("43");
         $result->delete();
         return $this->_redirect('todocrud/index/showall');
     }

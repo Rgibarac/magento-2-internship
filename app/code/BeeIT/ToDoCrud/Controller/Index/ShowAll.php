@@ -25,7 +25,5 @@ class ShowAll extends \Magento\Framework\App\Action\Action
             var_dump($item->getData());
             echo "<br/>";
         }
-        return;
-
     }
 }
