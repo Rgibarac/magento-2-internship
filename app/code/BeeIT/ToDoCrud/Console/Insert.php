@@ -38,9 +38,9 @@ class Insert extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if ($description = $input->getOption(self::DESCRIPTION)) {
-            $todo = $this->toDoFactory->create();
-            $todo->addData(["description" => $description, "creation_time" => time(), "update_time" => time(), "completed" => false]);
-            $todo->save();
+            $result = $this->toDoFactory->create();
+            $result->addData(["description" => $description, "creation_time" => time(), "update_time" => time(), "completed" => false]);
+            $result->save();
         } else {
             $output->writeln("Please enter a description.");
         }

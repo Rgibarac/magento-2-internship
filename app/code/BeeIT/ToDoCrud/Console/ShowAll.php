@@ -32,8 +32,9 @@ class ShowAll extends Command
         $toDoItemCollection->setPageSize(50);
         $allItems = $toDoItemCollection->getItems();
             foreach ($allItems as $item) {
-                $output->writeln(implode(' ', $item->getData()));
+                $output->writeln(json_encode($item->getData()));
                 $output->writeln(" ");
+
             }
     }
 }
